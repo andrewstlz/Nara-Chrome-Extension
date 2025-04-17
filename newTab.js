@@ -474,6 +474,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function showEncouragementBubble() {
+    const messages = ["Great job!", "You're making progress!", "Keep going!", "Nice work!", "Way to go!"];
+    const bubble = document.createElement("div");
+    bubble.className = "speech-bubble";
+    bubble.textContent = messages[Math.floor(Math.random() * messages.length)];
+    document.body.appendChild(bubble);
+    setTimeout(() => bubble.remove(), 3000);
+  }
+  
+
   async function changeBackgroundWithSlide(newImageUrl) {
     try {
       // Preload the new image first
@@ -635,7 +645,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const deleteButton = taskItem.querySelector(".delete-task");
           if (deleteButton) deleteButton.remove();
         }
-
+        if (checkbox.checked) {
+          showEncouragementBubble();
+        }
         let newPosition = 0;
         if (checkbox.checked) {
           newPosition = tasks.filter(
