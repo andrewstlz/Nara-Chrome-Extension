@@ -1111,4 +1111,22 @@ document.addEventListener("DOMContentLoaded", () => {
       changeBackgroundWithSlide(initialBackground);
     }
   });
+
+  document.querySelectorAll(".mood-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const selectedMood = btn.dataset.mood;
+      chrome.storage.local.set({ mood: selectedMood }, () => {
+        console.log("Mood saved:", selectedMood);
+      });
+      document.getElementById("mood-container").style.display = "none";
+    });
+  });
+  
+  // Optional: Hide mood picker if already chosen
+  chrome.storage.local.get("mood", (data) => {
+    if (data.mood) {
+      document.getElementById("mood-container").style.display = "none";
+    }
+  });
+  
 });
