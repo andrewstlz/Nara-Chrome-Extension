@@ -1120,13 +1120,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       document.getElementById("mood-container").style.display = "none";
     });
-  });
-  
-  // Optional: Hide mood picker if already chosen
-  chrome.storage.local.get("mood", (data) => {
-    if (data.mood) {
-      document.getElementById("mood-container").style.display = "none";
-    }
-  });
-  
+  });  
 });
